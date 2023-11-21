@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: postgres
+    password: ESD2023
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/marjanepromotion
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
