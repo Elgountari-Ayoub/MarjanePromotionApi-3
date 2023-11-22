@@ -6,18 +6,19 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
 
-    <include file="/db/changelog/db.cashier-changelog.xml"/>
-<!--    <changeSet author="ayoub" id="1">-->
-<!--        <createTable tableName="liquibaseTestTabel">-->
-<!--            <column name="id" type="int">-->
-<!--                <constraints primaryKey="true" nullable="false"/>-->
-<!--            </column>-->
-<!--            <column name="name" type="varchar(255)"/>-->
-<!--        </createTable>-->
-<!--    </changeSet>-->
-<!--    <changeSet id="2" author="ayoub">-->
-<!--        <addColumn tableName="liquibaseTestTabel">-->
-<!--            <column name="description" type="varchar(255)" />-->
-<!--        </addColumn>-->
-<!--    </changeSet>-->
+    <changeSet author="ayoub" id="1">
+        <createTable tableName="cashier">
+            <column name="cin" type="VARCHAR(20)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstName" type="VARCHAR(255)"/>
+            <column name="lastName" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(15)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="proxy_admin_cin" type="VARCHAR(20)">
+                <constraints foreignKeyName="fk_px_admin_cashier" references="proxies_admin(cin)"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
