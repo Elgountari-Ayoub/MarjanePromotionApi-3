@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+
+    <include file="/db/changelog/db.cashier-changelog.xml"/>
+<!--    <changeSet author="ayoub" id="1">-->
+<!--        <createTable tableName="liquibaseTestTabel">-->
+<!--            <column name="id" type="int">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="varchar(255)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="2" author="ayoub">-->
+<!--        <addColumn tableName="liquibaseTestTabel">-->
+<!--            <column name="description" type="varchar(255)" />-->
+<!--        </addColumn>-->
+<!--    </changeSet>-->
+</databaseChangeLog>
