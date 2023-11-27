@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+
+    <!-- Add a new column to the customers table -->
+    <changeSet id="addColumnToCustomersTable" author="ayoub">
+        <addColumn tableName="customers">
+            <column name="cashier_cin" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <!-- Add a foreign key constraint -->
+    <changeSet id="addForeignKeyConstraint" author="ayoub">
+        <addForeignKeyConstraint
+                baseTableName="customers"
+                baseColumnNames="cashier_cin"
+                constraintName="fk_customers_cashier"
+                referencedTableName="cashier"
+                referencedColumnNames="cin"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -22,5 +22,4 @@ public class Manager extends Person {
     @ManyToOne
     @JoinColumn(name = "admin_id", referencedColumnName = "CIN", nullable = false)
     private ProxyAdmin admin;
-
 }

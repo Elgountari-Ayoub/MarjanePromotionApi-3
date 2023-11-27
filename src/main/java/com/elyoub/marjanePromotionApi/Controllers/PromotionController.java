@@ -48,7 +48,7 @@ public class PromotionController {
     @PostMapping(value = "/promotions/products/create", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ProductPromotionDTO> savePromotion(@RequestBody ProductPromotionDTO promotionDTO) {
-        Optional<ProxyAdmin> proxyAdmin = this.proxyAdminService.findByCIN("SQ570980");
+        Optional<ProxyAdmin> proxyAdmin = this.proxyAdminService.findByCIN("HHpx0");
         if (proxyAdmin.isEmpty()){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

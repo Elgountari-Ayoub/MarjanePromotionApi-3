@@ -1,33 +1,25 @@
 package com.elyoub.marjanePromotionApi.entities;
 
 import com.elyoub.marjanePromotionApi.entities.Abstracts.Person;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "customers")
 public class Customer extends Person {
+
     @Id
-    private String id;
-    @Column(name = "firstName", length = 255, nullable = false)
-    private String firstName;
+    @Column(name = "CIN", length = 255)
+    private String cin;
 
-    @Column(name = "lastName", length = 255, nullable = false)
-    private String lastName;
-
-    @Column(name = "email", length = 255, nullable = false)
-    private String email;
-
-    @Column(name = "password", length = 255, nullable = false)
-    private String password;
-
-    @Column(name = "phone", length = 255, nullable = false)
-    private String phone;
-
+    @ManyToOne
+    @JoinColumn(name = "admin_id", referencedColumnName = "CIN", nullable = false)
+    private ProxyAdmin admin;
 }

@@ -44,7 +44,7 @@ public class ProxyAdminController {
     @PostMapping(value = "/proxy-admin/save", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ProxyAdminResponse> save(@RequestBody ProxyAdminRequest request) {
-        Optional<SuperAdmin> superAdmin= this.superAdminService.findByCIN("HH2002");
+        Optional<SuperAdmin> superAdmin= this.superAdminService.findByCIN("HH0");
         if(superAdmin.isPresent()){
             request.setSuperAdmin(superAdmin.get());
             Optional<ProxyAdmin> proxyAdmin = this.proxyAdminService.save(request);

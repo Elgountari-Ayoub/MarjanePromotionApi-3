@@ -48,10 +48,11 @@ public class ManagerController {
     @PostMapping(value = "/managers/save", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ManagerDTO> save(@RequestBody ManagerDTO managerDTO){
-        Optional<ProxyAdmin> proxyAdmin = this.proxyAdminService.findByCIN("SQ570980");
+        Optional<ProxyAdmin> proxyAdmin = this.proxyAdminService.findByCIN("HHpx0");
         if(proxyAdmin.isEmpty()){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+        managerDTO.setAdmin(proxyAdmin.get());
         Optional<Manager> manager = service.save(managerDTO);
         return manager.map(managerEntity -> new ResponseEntity<>(service.mapToDTO(managerEntity), HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
 

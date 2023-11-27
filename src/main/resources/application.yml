@@ -6,6 +6,19 @@ spring:
     url: jdbc:postgresql://localhost:5432/marjanepromotion
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   liquibase:
     change-log: db/changelog/db.changelog-master.xml
+  mail:
+    host: smtp.xxx.com
+    username: xxx@xxx.com
+    password: xxxxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+

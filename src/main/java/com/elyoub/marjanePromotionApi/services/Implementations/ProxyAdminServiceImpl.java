@@ -53,6 +53,7 @@ public class ProxyAdminServiceImpl implements IProxyAdminService {
                 .firstName(proxyAdmin.getFirstName())
                 .lastName(proxyAdmin.getLastName())
                 .phone(proxyAdmin.getPhone())
+                .superAdmin(proxyAdmin.getSuperAdmin())
                 .build();
     }
 

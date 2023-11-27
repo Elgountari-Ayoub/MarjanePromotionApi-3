@@ -1,22 +1,22 @@
-package com.elyoub.marjanePromotionApi.dtos.Responses;
+package com.elyoub.marjanePromotionApi.dtos;
 
-import com.elyoub.marjanePromotionApi.entities.SuperAdmin;
+import com.elyoub.marjanePromotionApi.entities.ProxyAdmin;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class ProxyAdminResponse {
+public class CustomerDTO {
+
+    private ProxyAdmin admin;
     private String cin;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String phone;
-    private SuperAdmin superAdmin;
-
 }

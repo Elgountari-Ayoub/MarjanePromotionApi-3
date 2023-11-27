@@ -1,22 +1,26 @@
 package com.elyoub.marjanePromotionApi.services.Implementations;
 
+import com.elyoub.marjanePromotionApi.dtos.ManagerDTO;
 import com.elyoub.marjanePromotionApi.dtos.PromotionCenterDTO;
 import com.elyoub.marjanePromotionApi.entities.Implementations.PromotionCenterId;
 import com.elyoub.marjanePromotionApi.entities.Manager;
 import com.elyoub.marjanePromotionApi.entities.PromotionCenter;
+import com.elyoub.marjanePromotionApi.observer.IObservable;
 import com.elyoub.marjanePromotionApi.repositories.PromotionCenterRepository;
 import com.elyoub.marjanePromotionApi.services.Interfaces.IPromotionCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PromotionCenterServiceImpl implements IPromotionCenterService{
+public class PromotionCenterServiceImpl implements IPromotionCenterService, IObservable {
 
     private PromotionCenterRepository repository;
     private ManagerServiceImpl managerService;
+    private List<ManagerDTO> manager = new ArrayList<>();
 
     @Autowired
     public PromotionCenterServiceImpl(PromotionCenterRepository repository, ManagerServiceImpl managerService) {
@@ -73,5 +77,23 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService{
         promotionCenter.setStatus(promotion.getStatus());
         promotionCenter.setPerformedAt(promotion.getPerformedAt());
         return promotionCenter;
+    }
+
+    @Override
+    public void addManager(ManagerServiceImpl managerService) {
+
+    }
+
+    @Override
+    public void removeManager(ManagerServiceImpl managerService) {
+
+    }
+
+    @Override
+    public void notifyManager() {
+        manager = managerService.findAll();
+        manager.forEach(managerDTO -> {
+            managerService.update(managerDTO);
+        });
     }
 }
