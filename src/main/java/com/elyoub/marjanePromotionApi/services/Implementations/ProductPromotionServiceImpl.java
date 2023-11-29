@@ -71,12 +71,11 @@ public class ProductPromotionServiceImpl implements IProductPromotionService {
                 throw new RuntimeException(e);
             }
         }else {
-
             ProductPromotion productPromotion = mapToEntity(promotion);
             Optional<Manager> manager = managerService.findByCIN(productPromotion.getProduct().getCategory().getDepartment().getManager().getCin());
 
             if (manager.isPresent()) {
-                repository.save(productPromotion);
+                 repository.save(productPromotion);
 
                 List<PromotionCenterDTO> promotionCenterDTOs = promotion.getCenters().stream()
                         .map(center -> {
