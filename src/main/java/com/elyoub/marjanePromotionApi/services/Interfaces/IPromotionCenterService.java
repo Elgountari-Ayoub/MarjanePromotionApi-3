@@ -19,4 +19,7 @@ public interface IPromotionCenterService {
     PromotionCenterDTO mapToDTO(PromotionCenter promotion);
 
     PromotionCenter mapToEntity(PromotionCenterDTO promotion);
+
+    public boolean acceptPromotion(PromotionCenterId promotionCenterId);
+    public boolean refusePromotion(PromotionCenterId promotionCenterId);
 }

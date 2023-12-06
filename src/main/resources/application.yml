@@ -1,17 +1,15 @@
 spring:
   datasource:
     username: postgres
-    password: ESD2023
+    password: 2002pm
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/marjanepromotion
   jpa:
     hibernate:
       ddl-auto: update
-  liquibase:
-    change-log: db/changelog/db.changelog-master.xml
   mail:
-    host: smtp.xxx.com
-    username: xxx@xxx.com
+    host: smtp.google.com
+    username: elgountariayoub22@gmail.com
     password: xxxxx
     properties:
       mail:
@@ -20,5 +18,7 @@ spring:
           starttls:
             enable: true
             required: true
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
 
 

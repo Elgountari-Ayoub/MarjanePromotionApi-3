@@ -5,6 +5,7 @@ import com.elyoub.marjanePromotionApi.dtos.PromotionCenterDTO;
 import com.elyoub.marjanePromotionApi.entities.Implementations.PromotionCenterId;
 import com.elyoub.marjanePromotionApi.entities.Manager;
 import com.elyoub.marjanePromotionApi.entities.PromotionCenter;
+import com.elyoub.marjanePromotionApi.enums.PromotionStatus;
 import com.elyoub.marjanePromotionApi.observer.IObservable;
 import com.elyoub.marjanePromotionApi.repositories.PromotionCenterRepository;
 import com.elyoub.marjanePromotionApi.services.Interfaces.IPromotionCenterService;
@@ -29,7 +30,7 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService, IObs
     }
 
     @Override
-    public Optional<PromotionCenter>  findById(PromotionCenterId id) {
+    public Optional<PromotionCenter> findById(PromotionCenterId id) {
 
         return repository.findById(id);
     }
@@ -41,7 +42,7 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService, IObs
 
     @Override
     public List<PromotionCenter> findAllPromsByManager(Manager manager) {
-            return repository.findAllByManager(manager);
+        return repository.findAllByManager(manager);
     }
 
     @Override
@@ -77,6 +78,37 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService, IObs
         promotionCenter.setStatus(promotion.getStatus());
         promotionCenter.setPerformedAt(promotion.getPerformedAt());
         return promotionCenter;
+    }
+
+    @Override
+    public boolean acceptPromotion(PromotionCenterId promotionCenterId) {
+        try {
+            // find the promotion center status
+            Optional<PromotionCenter> promotionCenter = repository.findById(promotionCenterId);
+            if (promotionCenter.isPresent()) {
+                promotionCenter.get().setStatus(PromotionStatus.ACCEPTED);
+                repository.save(promotionCenter.get());
+                return true;
+            }
+        } catch (Exception ignored) {
+        }
+        return false;
+
+    }
+    @Override
+    public boolean refusePromotion(PromotionCenterId promotionCenterId) {
+        try {
+            // find the promotion center status
+            Optional<PromotionCenter> promotionCenter = repository.findById(promotionCenterId);
+            if (promotionCenter.isPresent()) {
+                promotionCenter.get().setStatus(PromotionStatus.REFUSED);
+                repository.save(promotionCenter.get());
+                return true;
+            }
+        } catch (Exception ignored) {
+        }
+        return false;
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.elyoub.marjanePromotionApi.Controllers;
 import com.elyoub.marjanePromotionApi.dtos.ManagerDTO;
 import com.elyoub.marjanePromotionApi.dtos.PromotionCenterDTO;
 import com.elyoub.marjanePromotionApi.dtos.Requests.LoginRequest;
+import com.elyoub.marjanePromotionApi.entities.Implementations.PromotionCenterId;
 import com.elyoub.marjanePromotionApi.entities.Manager;
 import com.elyoub.marjanePromotionApi.entities.ProxyAdmin;
 import com.elyoub.marjanePromotionApi.services.Implementations.PromotionCenterServiceImpl;
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
+//@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class ManagerController {
 
@@ -63,18 +65,18 @@ public class ManagerController {
     @GetMapping(value = "/managers/promotions", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<List<PromotionCenterDTO>> getAllPromotionsByManager() {
-        Optional<Manager> managerEntity =  this.service.findByCIN("DQ456865");
+        Optional<Manager> managerEntity =  this.service.findByCIN("HHm");
         if (managerEntity.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        if(!this.service.isCurrentTimeInRange()){
-            try {
-                throw  new Exception("En tant que manager, vous ne pouvez voir les promotions que de 8 à 12 heures .");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        if(!this.service.isCurrentTimeInRange()){
+//            try {
+//                throw  new Exception("En tant que manager, vous ne pouvez voir les promotions que de 8 à 12 heures .");
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
         List<PromotionCenterDTO> promotions = promoCenterService.findAllPromsByManager(managerEntity.get())
                 .stream()
@@ -82,6 +84,15 @@ public class ManagerController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(promotions);
+    }
+
+    @PostMapping(value = "/managers/promotions/accept", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Boolean> accept(@RequestBody PromotionCenterId promotionCenterId){
+//        service.accept(promotionCenterId);
+        boolean isAccepted = promoCenterService.acceptPromotion(promotionCenterId);
+        System.out.println(isAccepted);
+        return ResponseEntity.ok(isAccepted);
     }
 
 }

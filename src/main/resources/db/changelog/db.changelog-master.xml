@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
-    <include file="/db/changelog/db.cashier-changelog.xml"/>
-    <include file="/db/changelog/db.cutomer-addForeignKeyConstraint-changelog.xml"/>
+    <!--    <include file="/db/changelog/db.cashier-changelog.xml"/>-->
+        <include file="/db/changelog/db.cutomer-addForeignKeyConstraint-changelog.xml"/>
 
 </databaseChangeLog>

@@ -14,6 +14,4 @@ import java.io.Serializable;
 public class PromotionCenterId implements Serializable {
     private Long centerId;
     private Long promotionId;
-
-
 }
