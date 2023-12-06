@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-//@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class ManagerController {
 
@@ -89,10 +89,16 @@ public class ManagerController {
     @PostMapping(value = "/managers/promotions/accept", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Boolean> accept(@RequestBody PromotionCenterId promotionCenterId){
-//        service.accept(promotionCenterId);
         boolean isAccepted = promoCenterService.acceptPromotion(promotionCenterId);
         System.out.println(isAccepted);
         return ResponseEntity.ok(isAccepted);
     }
 
+    @PostMapping(value = "/managers/promotions/refuse", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Boolean> refuse(@RequestBody PromotionCenterId promotionCenterId){
+        boolean isAccepted = promoCenterService.refusePromotion(promotionCenterId);
+        System.out.println(isAccepted);
+        return ResponseEntity.ok(isAccepted);
+    }
 }
