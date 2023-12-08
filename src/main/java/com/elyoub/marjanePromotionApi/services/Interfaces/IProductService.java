@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface IProductService {
     Optional<Product> findByCIN(int id);
+    long count();
 }

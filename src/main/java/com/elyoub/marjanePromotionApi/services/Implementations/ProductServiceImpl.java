@@ -33,6 +33,11 @@ public class ProductServiceImpl implements IProductService {
         return repository.findById(id);
     }
 
+    @Override
+    public long count() {
+        return repository.count();
+    }
+
     public ProoductDTO mapToDTO(Product product) {
         return ProoductDTO.builder()
                 .id(product.getId())

@@ -10,6 +10,8 @@ import com.elyoub.marjanePromotionApi.observer.IObservable;
 import com.elyoub.marjanePromotionApi.repositories.PromotionCenterRepository;
 import com.elyoub.marjanePromotionApi.services.Interfaces.IPromotionCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,9 +43,10 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService, IObs
     }
 
     @Override
-    public List<PromotionCenter> findAllPromsByManager(Manager manager) {
-        return repository.findAllByManager(manager);
+    public Page<PromotionCenter> findAllPromsByManager(Manager manager, Pageable pageable) {
+        return repository.findAllByManagerOrderById(manager, pageable);
     }
+
 
     @Override
     public Optional<PromotionCenter> save(PromotionCenterDTO promotionDto) {
@@ -109,6 +112,15 @@ public class PromotionCenterServiceImpl implements IPromotionCenterService, IObs
         }
         return false;
 
+    }
+
+    @Override
+    public int countByManager(Manager manager) {
+        return repository.countByManager(manager);
+    }
+
+    public int countByManagerAndStatus(Manager manager, PromotionStatus promotionStatus){
+        return repository.countByManagerAndStatus(manager, promotionStatus);
     }
 
     @Override
